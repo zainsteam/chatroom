@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>people</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let p of people; let i = index" >
+    <ion-item (click)="selectedIndex = i"  routerDirection="root" [routerLink]="[p.name]" lines="none" detail="true" [class.selected]="selectedIndex == i">
+      <ion-label>{{p.name}}</ion-label>
+    </ion-item>
+
+  </ion-list>
+  
+
+</ion-content>

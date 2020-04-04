@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController, ModalController } from '@ionic/angular';
+import { FirebaseService } from './firebase.service';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -13,42 +15,36 @@ export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [
     {
-      title: 'Inbox',
-      url: '/folder/Inbox',
+      title: 'Login',
+      url: '/login',
       icon: 'mail'
     },
     {
-      title: 'Outbox',
-      url: '/folder/Outbox',
+      title: 'Sign up',
+      url: '/signup',
       icon: 'paper-plane'
     },
     {
-      title: 'Favorites',
-      url: '/folder/Favorites',
+      title: 'people',
+      url: '/people',
       icon: 'heart'
     },
     {
-      title: 'Archived',
-      url: '/folder/Archived',
+      title: 'Chat room',
+      url: '/chatroom',
       icon: 'archive'
-    },
-    {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
-    },
-    {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
     }
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+
+  userEmail: string;
+
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private navCtrl: NavController,
+    private authService: FirebaseService
   ) {
     this.initializeApp();
   }
@@ -61,9 +57,27 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
+    if(this.authService.userDetails()){
+      this.userEmail = this.authService.userDetails().email;
+      console.log(this.userEmail);
+    }else{
+      this.navCtrl.navigateBack('');
+    }
+    const path = window.location.pathname.split('/')[1];
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
   }
+
+  logout(){
+    this.authService.logoutUser()
+    .then(res => {
+      console.log(res);
+      this.navCtrl.navigateBack('');
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
 }
