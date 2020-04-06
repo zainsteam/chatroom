@@ -15,6 +15,7 @@
       <ion-label>{{p.message}}</ion-label>
     </ion-item>
   </ion-list>
+  </ion-content>
 
  
   
@@ -23,11 +24,12 @@
     <ion-input type="text" [(ngModel)]="message" class="form-controll" required></ion-input>
   </ion-item>
   <ion-button  class="submit-btn" type="button" (click)="sendmsg()">send</ion-button> -->
-  <ion-footer class="footer" style="display:inline-flex">
+  <ion-footer class="input-area" style="display:inline-flex;background-color: #e6e3e3;">
   
-        <ion-input style="width: 75%;" type="text" [(ngModel)]="message" class="form-controll" required></ion-input>
-        <ion-button style="width: 20%;" class="submit-btn" type="button" (click)="sendmsg()">send</ion-button>
-
+        
+      <ion-input style="width: 75%;width: 75%;background: white;height: 34px;margin: 6px;border-radius: 15px;" type="text" [(ngModel)]="message" class="form-controll" required></ion-input>
+      <ion-button style="width: 20%;--border-radius: 21px;" class="submit-btn" type="button" (click)="sendmsg()">send</ion-button>
+      
   </ion-footer>
 
 

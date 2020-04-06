@@ -8,9 +8,9 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngFor="let p of people; let i = index" >
-    <ion-item (click)="selectedIndex = i" *ngIf="p.email != email" routerDirection="root" [routerLink]="[p.email]" lines="none" detail="true" [class.selected]="selectedIndex == i">
-      <ion-label>{{p.email}}</ion-label>
+  <ion-list *ngFor="let p of people; let i = index" [className]="p.email == email ? 'hidden1' : 'show'" >
+    <ion-item  (click)="selectedIndex = i" *ngIf="p.email != email" routerDirection="root" [routerLink]="[p.email]" lines="none" detail="true" [class.selected]="selectedIndex == i">
+      <ion-label >{{p.email}}</ion-label>
     </ion-item>
   </ion-list>
   
