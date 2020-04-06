@@ -33,6 +33,18 @@
         </div>
       </ng-container>
     </div>
+
+    <ion-item>
+      <ion-label  position="floating" color="primary">Confirm Password</ion-label>
+      <ion-input type="password" formControlName="confrim_password" class="form-controll" required></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.confrim_password">
+        <div class="error-message" *ngIf="validations_form.get('confrim_password').hasError(validation.type) && (validations_form.get('confrim_password').dirty || validations_form.get('confrim_password').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
  
     
     <ion-button  class="submit-btn" type="submit"  [disabled]="!validations_form.valid">Register</ion-button>

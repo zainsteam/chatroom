@@ -3,10 +3,32 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>{{folder}}</ion-title>
+    <ion-title>{{ruid}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-content>
+  
+  <ion-list  *ngFor="let p of usermesssage" >
+    <ion-item [className]="p.sender == sender ? 'sender' : 'reciever'"  *ngIf="(p.reciever == ruid && p.sender == sender ) || (p.reciever == sender && p.sender == ruid )" lines="none" detail="false">
+      <ion-label>{{p.message}}</ion-label>
+    </ion-item>
+  </ion-list>
 
-</ion-content>
+ 
+  
+  <!-- <ion-item footer>
+    <ion-label  position="floating" color="primary">Message</ion-label>
+    <ion-input type="text" [(ngModel)]="message" class="form-controll" required></ion-input>
+  </ion-item>
+  <ion-button  class="submit-btn" type="button" (click)="sendmsg()">send</ion-button> -->
+  <ion-footer class="footer" style="display:inline-flex">
+  
+        <ion-input style="width: 75%;" type="text" [(ngModel)]="message" class="form-controll" required></ion-input>
+        <ion-button style="width: 20%;" class="submit-btn" type="button" (click)="sendmsg()">send</ion-button>
+
+  </ion-footer>
+
+
+

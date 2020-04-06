@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'chatroom',
     loadChildren: () => import('./chatroom/chatroom.module').then( m => m.ChatroomPageModule)
+  },
+  {
+    path: 'message-list',
+    loadChildren: () => import('./message-list/message-list.module').then( m => m.MessageListPageModule)
   }
 ];
 

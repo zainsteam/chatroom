@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController } from '@ionic/angular';
 import { FirebaseService } from './firebase.service';
+import { UsersService } from './users.service';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -36,15 +37,14 @@ export class AppComponent implements OnInit {
     }
   ];
 
-  userEmail: string;
-
-
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private navCtrl: NavController,
-    private authService: FirebaseService
+    private authService: FirebaseService,
+    public user: UsersService,
+
   ) {
     this.initializeApp();
   }
@@ -57,12 +57,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.authService.userDetails()){
-      this.userEmail = this.authService.userDetails().email;
-      console.log(this.userEmail);
-    }else{
-      this.navCtrl.navigateBack('');
-    }
     const path = window.location.pathname.split('/')[1];
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
@@ -72,12 +66,11 @@ export class AppComponent implements OnInit {
   logout(){
     this.authService.logoutUser()
     .then(res => {
-      console.log(res);
       this.navCtrl.navigateBack('');
     })
     .catch(error => {
       console.log(error);
     })
   }
-
+  
 }

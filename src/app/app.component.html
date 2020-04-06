@@ -2,9 +2,9 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
-        <ion-list id="inbox-list">
+        <ion-list id="inbox-list" lines="none" detail="false">
           <ion-list-header>Chat App</ion-list-header>
-          <ion-note>{{userEmail}}</ion-note>
+          <ion-note></ion-note>
 
           <ion-menu-toggle auto-hide="false">
             
@@ -20,18 +20,12 @@
               <ion-icon slot="start" [ios]="heart + '-outline'" [md]="heart + '-sharp'"></ion-icon>
               <ion-label>People</ion-label>
             </ion-item>
-            <ion-item (click)="selectedIndex = 'chatroom'"  routerDirection="root" [routerLink]="['chatroom']" lines="none" detail="false" [class.selected]="selectedIndex == i">
-              <ion-icon slot="start" [ios]="heart + '-outline'" [md]="heart + '-sharp'"></ion-icon>
-              <ion-label>Chat Room</ion-label>
-            </ion-item>
-            <ion-item (click)="logout()">
+            <ion-item (click)="logout()" lines="none" detail="false"  routerDirection="root" [routerLink]="['']">
               <ion-icon slot="start" [ios]="heart + '-outline'" [md]="heart + '-sharp'"></ion-icon>
               <ion-label>Log Out</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-
-        
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>

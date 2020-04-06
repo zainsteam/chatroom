@@ -1,0 +1,31 @@
+.hidden1{
+    display: none;
+}
+.hidden2{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+.scroll{
+    overflow-y: scroll;
+}
+.footer{
+    position : absolute;
+    bottom: 0px; 
+}
+
+.sender{
+    float: right;
+    --ion-item-background: #435cb7d5;
+    color: #fff;
+    border-radius: 15px;
+}
+
+.reciever{
+    float: left;
+    --ion-item-background: #909090d5;
+    color: #fff;
+    border-radius: 15px;
+}
